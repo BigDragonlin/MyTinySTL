@@ -26,7 +26,7 @@
 
 int main()
 {
-  // 使用命名空间mystl::test中的内容，简化代码中的调用
+  // 使用命名空间mystl::test中的内容，简化代码中的调用，测试
   using namespace mystl::test;
 
   // 关闭C++标准库iostream与C语言stdio之间的同步，提高输出效率
