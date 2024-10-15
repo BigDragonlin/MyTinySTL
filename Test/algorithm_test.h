@@ -61,19 +61,29 @@ TEST(copy_test)
   EXPECT_CON_EQ(exp, act);
 }
 
-TEST(copy_backward_test)
-{
-  int arr1[] = { 1,2,3,4,5 };
-  std::vector<int> exp{ 0,0,0,0,0,6,7,8,9,10 };
-  int act[] = { 0,0,0,0,0,6,7,8,9,10 };
-  std::copy_backward(arr1, arr1 + 5, exp.begin() + 5);
-  mystl::copy_backward(arr1, arr1 + 5, act + 5);
-  EXPECT_CON_EQ(exp, act);
-  std::copy_backward(exp.begin(), exp.begin() + 8, exp.begin() + 9);
-  mystl::copy_backward(act, act + 8, act + 9);
-  EXPECT_CON_EQ(exp, act);
-}
+// 定义一个测试用例用于检查 mystl::copy_backward 的功能是否正确，与 std::copy_backward 行为一致
+TEST(copy_backward_test) {
+    // 初始化源数组 arr1，包含 5 个整数
+    int arr1[] = {1, 2, 3, 4, 5};
 
+    // 初始化预期结果向量 exp 和实际结果数组 act，两者都为 10 个元素
+    // 前五个元素为 0，后五个元素初始值不同，用于测试 copy_backward 的效果
+    std::vector<int> exp{0, 0, 0, 0, 0, 6, 7, 8, 9, 10};
+    int act[] = {0, 0, 0, 0, 0, 6, 7, 8, 9, 10};
+
+    // 第一次复制操作：从 arr1 末尾开始复制 5 个元素到 exp 和 act 的相应位置
+    std::copy_backward(arr1, arr1 + 5, exp.begin() + 5); // 标准库实现
+    mystl::copy_backward(arr1, arr1 + 5, act + 5); // 自定义实现
+    // 验证 exp 和 act 是否一致
+    EXPECT_CON_EQ(exp, act);
+
+    // 第二次复制操作：这次复制的是 exp 和 act 的前 8 个元素到各自的第 9 个位置
+    std::copy_backward(exp.begin(), exp.begin() + 8, exp.begin() + 9); // 标准库再次操作于 exp
+    mystl::copy_backward(act, act + 8, act + 9); // 自定义再次操作于 act
+    // 再次验证 exp 和 act 是否保持一致，确保 mystl::copy_backward 的正确性
+    EXPECT_CON_EQ(exp, act);
+}
+    
 TEST(copy_if_test)
 {
   int arr1[] = { 1,2,3,4,5,6,7,8,9,10 };
