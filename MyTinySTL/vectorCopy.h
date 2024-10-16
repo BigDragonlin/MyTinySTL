@@ -4,7 +4,8 @@
 #include "memory.h"
 #include "algoCopy.h"
 
-namespace my_stl_copy{
+namespace mystl_copy{
+    
     template <class T>
     class vector {
     public:
@@ -27,7 +28,8 @@ namespace my_stl_copy{
 
     template <class T>
     vector<T>::fill_init(size_type n, const value_type& value) {
-        const size_t max_size = my_stl_copy::max();
+        const size_type max_size = mystl_copy::max(static_cast<size_type>(16), n);
+        
     }
 }
 
